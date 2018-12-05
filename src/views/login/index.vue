@@ -45,21 +45,21 @@
 <script>
 import { validUsername, validPassword } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
-import Cookies from 'js-cookie'
+import { claerLocalforage } from '@/utils/lfStore'
 export default {
   name: 'Login',
   components: { LangSelect },
   data() {
     const validateUsername = (rule, value, cb) => {
       if (!validUsername(value)) {
-        cb(new Error(this.$t('login.username')))
+        cb(new Error('用户名错误'))
       } else {
         cb()
       }
     }
     const validatePassword = (rule, value, cb) => {
       if (!validPassword(value)) {
-        cb(new Error(this.$t('login.password')))
+        cb(new Error('密码错误'))
       } else {
         cb()
       }
@@ -85,7 +85,7 @@ export default {
   watch: {
     $route: {
       handler: route => {
-        console.log(route)
+        // console.log(route)
       //  this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -100,14 +100,22 @@ export default {
       }
     },
     login(formName) {
+      claerLocalforage().then(() => {
+        console.log('清除')
+      })
+        .catch(error => {
+          console.log(error)
+        })
       this.$refs[formName].validate((valid) => {
+        console.log(valid)
         if (valid) {
           this.loading = true
           this.$store.dispatch('login', this.loginForm).then((obj) => {
+            console.log(obj)
             this.loading = false
-            Cookies.set('username', obj.username)
-            this.$router.push({ path: '/home' })
-          }).catch(() => {
+            this.$router.push({ name: 'Home' })
+          }).catch((error) => {
+            console.log(error)
             this.loading = false
           })
         } else {
@@ -117,7 +125,7 @@ export default {
       })
     },
     losePwd() {
-      this.$router.push({ path: '/losepwd/find' })
+      this.$router.push({ path: '/losepwd' })
     }
   }
 }
