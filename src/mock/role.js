@@ -1,5 +1,5 @@
 import { param2Obj } from '@/utils'
-import { Random } from 'mockjs'
+import Mock, { Random } from 'mockjs'
 
 const total = 100
 const roles = []
@@ -7,7 +7,8 @@ for (let i = 0; i < total; i++) {
   roles.push({
     id: i + 1,
     rolename: Random.word(),
-    status: Random.integer(0, 1)
+    remakers: Mock.mock('@csentence'),
+    isDataAdmin: Random.boolean() ? 1 : 0
   })
 }
 

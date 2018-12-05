@@ -3,7 +3,8 @@ import lf from 'localforage'
 const keys = {
   user: 'user',
   app: 'app',
-  jwtToken: 'jwt-token'
+  jwtToken: 'jwt-token',
+  routeData: 'routeData'
 }
 let store = lf.createInstance({ name: 'default' })
 // const defaultStore = store
@@ -32,6 +33,15 @@ function setApp(app) {
 function getApp() {
   return store.getItem(keys.app)
 }
+function setRouteData(routerData) {
+  return store.setItem(keys.routeData, routerData)
+}
+function getRouteData() {
+  return store.getItem(keys.routeData)
+}
+function claerLocalforage() {
+  return lf.clear()
+}
 export {
   setName,
   setUser,
@@ -39,5 +49,8 @@ export {
   setToken,
   getToken,
   setApp,
-  getApp
+  getApp,
+  setRouteData,
+  getRouteData,
+  claerLocalforage
 }

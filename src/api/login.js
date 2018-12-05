@@ -20,8 +20,13 @@ function logout() {
 function getUserInfo(token) {
   return request({
     url: 'user/info',
-    method: 'get',
-    params: { token }
+    method: 'get'
   })
 }
-export { login, logout, getUserInfo }
+function getRoutes() {
+  return request({
+    url: 'user/routes',
+    method: 'get'
+  })
+}
+export { login, logout, getUserInfo, getRoutes }

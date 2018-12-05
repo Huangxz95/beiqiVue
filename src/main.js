@@ -9,7 +9,7 @@ import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import '@/styles/index.scss'
-
+import './permission'
 import i18n from './lang'
 import { getApp } from './utils/lfStore'
 import './icons'

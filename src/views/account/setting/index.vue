@@ -81,7 +81,7 @@ import SettingBread from '@/components/SettingBread/index'
 import reg from '@/utils/reg'
 import { getSettingInfo } from '@/api/settingInfo'
 export default {
-  name: 'PageSetting',
+  name: 'AccountSetting',
   components: {
     VueCropper,
     SettingBread
@@ -97,10 +97,11 @@ export default {
       }
     }
   },
+
   data() {
     return {
       dialogVisible: false,
-      user: this.$store.state.user.token,
+      user: this.$store.state.user.username,
       nickname: '',
       synopsis: '',
       activeName: 'baseSetting',
@@ -115,6 +116,7 @@ export default {
     }
   },
   created() {
+    console.log(this.$store.state)
     getSettingInfo().then(res => {
       const data = res.data
       this.breadList[0].text2 = `密码强度:${data.strength}`

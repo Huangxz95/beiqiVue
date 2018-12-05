@@ -5,6 +5,7 @@ export default {
     role: 'Role Management',
     system: 'System',
     pageSetting: 'setting',
+    menuAuthorize: 'menuAuthorize',
     introduction: 'Introduction',
     documentation: 'Documentation',
     guide: 'Guide',
